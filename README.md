@@ -1,5 +1,5 @@
 # Calculator-with-Tkinter
-This is a calculator i am making using the Python module Tkinter.
+**This is a calculator i am making using the Python module Tkinter.**
  
 **This is still a W.I.P so i know most of the calculator isn't working. I am currently making the physical elements, alignment and other minor adjustments to make it look good.**
 
