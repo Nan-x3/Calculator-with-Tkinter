@@ -13,7 +13,7 @@ win.geometry("400x210")
 default = 0
 
 label = Label(win, text=default, font=("ms ui gothic", 15))
-label.place(x=382, y=3,  anchor=NW)
+label.place(x=382, y=3, anchor=NW)
 
 buttons = [
     [0, 0, 0, 0],
