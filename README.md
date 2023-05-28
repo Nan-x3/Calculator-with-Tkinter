@@ -10,4 +10,4 @@ Currently:
 
 What to expect:
 1. A working simple calculator.
-2. 6 themes.
+2. upto 6 interchangeable themes.
