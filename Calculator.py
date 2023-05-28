@@ -8,12 +8,12 @@ win = Tk()
 win.title("Calculator")
 win.geometry("400x210")
 
+e = Entry(win, width=64, borderwidth=5)
+e.place(x=3, anchor=NW)
+
 # Variables
 
 default = 0
-
-label = Label(win, text=default, font=("ms ui gothic", 15))
-label.place(x=382, y=3, anchor=NW)
 
 buttons = [
     [0, 0, 0, 0],
@@ -38,7 +38,7 @@ def cycle_theme():
 
     if theme_index == 0:
         win.config(bg="#f0f0f0")
-        label.config(bg="#f0f0f0", fg="#000000")
+        e.config(bg="#f0f0f0", fg="#000000")
         button.config(bg="#e0e0e0", fg="#000000")
         button1.config(bg="#e0e0e0", fg="#000000")
         button2.config(bg="#e0e0e0", fg="#000000")
@@ -62,7 +62,7 @@ def cycle_theme():
 
     elif theme_index == 1:
         win.config(bg="#1f1f1f")
-        label.config(bg="#1f1f1f", fg="#ffffff")
+        e.config(bg="#1f1f1f", fg="#ffffff")
         button.config(bg="#303030", fg="#ffffff")
         button1.config(bg="#303030", fg="#ffffff")
         button2.config(bg="#303030", fg="#ffffff")
@@ -86,7 +86,7 @@ def cycle_theme():
 
     elif theme_index == 2:
         win.config(bg="#77ff77")
-        label.config(bg="#77ff77", fg="#1f1111")
+        e.config(bg="#77ff77", fg="#1f1111")
         button.config(bg="#b5ffb5", fg="#1f1111")
         button.config(bg="#b5ffb5", fg="#1f1111")
         button1.config(bg="#b5ffb5", fg="#1f1111")
@@ -111,7 +111,7 @@ def cycle_theme():
 
     elif theme_index == 3:
         win.config(bg="#f8c8dc")
-        label.config(bg="#f8c8dc", fg="#d2042d")
+        e.config(bg="#f8c8dc", fg="#d2042d")
         button.config(bg="#ffd9e9", fg="#d2042d")
         button.config(bg="#ffd9e9", fg="#d2042d")
         button1.config(bg="#ffd9e9", fg="#d2042d")
@@ -136,7 +136,7 @@ def cycle_theme():
 
     elif theme_index == 4:
         win.config(bg="#add8e6")
-        label.config(bg="#add8e6", fg="#2c5cab")
+        e.config(bg="#add8e6", fg="#2c5cab")
         button.config(bg="#bbeafa", fg="#2c5cab")
         button.config(bg="#bbeafa", fg="#2c5cab")
         button1.config(bg="#bbeafa", fg="#2c5cab")
@@ -161,7 +161,7 @@ def cycle_theme():
 
     elif theme_index == 5:
         win.config(bg="#d20434")
-        label.config(bg="#d20434", fg="#344c2e")
+        e.config(bg="#d20434", fg="#344c2e")
         button.config(bg="#ff5047", fg="#344c2e")
         button.config(bg="#ff5047", fg="#344c2e")
         button1.config(bg="#ff5047", fg="#344c2e")
@@ -185,46 +185,124 @@ def cycle_theme():
         button19.config(bg="#ff5047", fg="#344c2e")
 
 
+def button_click(num):
+    current = e.get()
+    e.delete(0, END)
+    e.insert(0, str(current) + str(num))
+
+
+def Clear():
+    e.delete(0, END)
+
+
+def button_add():
+    first_number = e.get()
+    add = first_number + fifth_number
+
+
+def button_sub():
+    second_number = e.get()
+    global s_num
+    s_num = int(second_number)
+    e.delete(0, END)
+
+
+def button_mult():
+    third_number = e.get()
+    global t_num
+    t_num = int(third_number)
+    e.delete(0, END)
+
+
+def button_div():
+    fourth_number = e.get()
+    global fo_num
+    fo_num = int(fourth_number)
+    e.delete(0, END)
+
+
+def button_equal():
+    fifth_number = e.get()
+    e.delete(0, END)
+    if button_add():
+        print("works")
+
+
 button = Button(win, text=themes[theme_index], font=(
     "ms ui gothic", 15), width=8, height=1, command=cycle_theme)
 button.place(x=5, y=31)
+
 button1 = Button(win, text="", font=("ms ui gothic", 15), width=8, height=1)
 button1.place(x=103, y=31)
+
 button2 = Button(win, text="⇦", font=("ms ui gothic", 15), width=8, height=1)
 button2.place(x=201, y=31)
-button3 = Button(win, text="C", font=("ms ui gothic", 15), width=8, height=1)
+
+button3 = Button(win, text="C", font=("ms ui gothic", 15),
+                 width=8, height=1, command=lambda: Clear())
 button3.place(x=299, y=31)
-button4 = Button(win, text="1", font=("ms ui gothic", 15), width=8, height=1)
+
+button4 = Button(win, text="1", font=("ms ui gothic", 15),
+                 width=8, height=1, command=lambda: button_click(1))
 button4.place(x=5, y=66)
-button5 = Button(win, text="2", font=("ms ui gothic", 15), width=8, height=1)
+
+button5 = Button(win, text="2", font=("ms ui gothic", 15),
+                 width=8, height=1, command=lambda: button_click(2))
 button5.place(x=103, y=66)
-button6 = Button(win, text="3", font=("ms ui gothic", 15), width=8, height=1)
+
+button6 = Button(win, text="3", font=("ms ui gothic", 15),
+                 width=8, height=1, command=lambda: button_click(3))
 button6.place(x=201, y=66)
-button7 = Button(win, text="+", font=("ms ui gothic", 15), width=8, height=1)
+
+button7 = Button(win, text="+", font=("ms ui gothic", 15),
+                 width=8, height=1, command=button_add)
 button7.place(x=299, y=66)
-button8 = Button(win, text="4", font=("ms ui gothic", 15), width=8, height=1)
+
+button8 = Button(win, text="4", font=("ms ui gothic", 15),
+                 width=8, height=1, command=lambda: button_click(4))
 button8.place(x=5, y=101)
-button9 = Button(win, text="5", font=("ms ui gothic", 15), width=8, height=1)
+
+button9 = Button(win, text="5", font=("ms ui gothic", 15),
+                 width=8, height=1, command=lambda: button_click(5))
 button9.place(x=103, y=101)
-button10 = Button(win, text="6", font=("ms ui gothic", 15), width=8, height=1)
+
+button10 = Button(win, text="6", font=("ms ui gothic", 15),
+                  width=8, height=1, command=lambda: button_click(6))
 button10.place(x=201, y=101)
-button11 = Button(win, text="-", font=("ms ui gothic", 15), width=8, height=1)
+
+button11 = Button(win, text="-", font=("ms ui gothic", 15),
+                  width=8, height=1, command=button_sub)
 button11.place(x=299, y=101)
-button12 = Button(win, text="7", font=("ms ui gothic", 15), width=8, height=1)
+
+button12 = Button(win, text="7", font=("ms ui gothic", 15),
+                  width=8, height=1, command=lambda: button_click(7))
 button12.place(x=5, y=136)
-button13 = Button(win, text="8", font=("ms ui gothic", 15), width=8, height=1)
+
+button13 = Button(win, text="8", font=("ms ui gothic", 15),
+                  width=8, height=1, command=lambda: button_click(8))
 button13.place(x=103, y=136)
-button14 = Button(win, text="9", font=("ms ui gothic", 15), width=8, height=1)
+
+button14 = Button(win, text="9", font=("ms ui gothic", 15),
+                  width=8, height=1, command=lambda: button_click(9))
 button14.place(x=201, y=136)
-button15 = Button(win, text="×", font=("ms ui gothic", 15), width=8, height=1)
+
+button15 = Button(win, text="×", font=("ms ui gothic", 15),
+                  width=8, height=1, command=button_mult)
 button15.place(x=299, y=136)
-button16 = Button(win, text="↲", font=("ms ui gothic", 15), width=8, height=1)
+
+button16 = Button(win, text="↲", font=("ms ui gothic", 15),
+                  width=8, height=1, command=button_equal)
 button16.place(x=5, y=171)
-button17 = Button(win, text="0", font=("ms ui gothic", 15), width=8, height=1)
+
+button17 = Button(win, text="0", font=("ms ui gothic", 15),
+                  width=8, height=1, command=lambda: button_click(0))
 button17.place(x=103, y=171)
+
 button18 = Button(win, text="·", font=("ms ui gothic", 15), width=8, height=1)
 button18.place(x=201, y=171)
-button19 = Button(win, text="÷", font=("ms ui gothic", 15), width=8, height=1)
+
+button19 = Button(win, text="÷", font=("ms ui gothic", 15),
+                  width=8, height=1, command=button_div)
 button19.place(x=299, y=171)
 
 # Main Loop
