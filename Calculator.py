@@ -195,6 +195,19 @@ def Clear():
     e.delete(0, END)
 
 
+def button_nil():
+    current = e.get()
+    if current == "":
+        e.insert(0, "0")
+    if current != "":
+        if current[-1] != "+":
+            if current[-1] != "-":
+                if current[-1] != "*":
+                    if current[-1] != "/":
+                        e.delete(0, END)
+                        e.insert(0, str(current) + "+")
+
+
 def button_add():
     current = e.get()
     if current[-1] != '.':
@@ -259,6 +272,8 @@ def button_backspace():
 
 def button_dot():
     current_expression = e.get()
+    if '.' in current_expression.split()[-1]:
+        return
     if current_expression[-1] != '.':
         if current_expression[-1] != "+":
             if current_expression[-1] != "-":
