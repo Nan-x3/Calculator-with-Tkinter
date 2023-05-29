@@ -196,36 +196,77 @@ def Clear():
 
 
 def button_add():
-    first_number = e.get()
-    add = first_number + fifth_number
+    current = e.get()
+    if current[-1] != '.':
+        if current[-1] != "+":
+            if current[-1] != "-":
+                if current[-1] != "*":
+                    if current[-1] != "/":
+                        e.delete(0, END)
+                        e.insert(0, str(current) + "+")
 
 
 def button_sub():
-    second_number = e.get()
-    global s_num
-    s_num = int(second_number)
-    e.delete(0, END)
+    current = e.get()
+    if current[-1] != '.':
+        if current[-1] != "+":
+            if current[-1] != "-":
+                if current[-1] != "*":
+                    if current[-1] != "/":
+                        e.delete(0, END)
+                        e.insert(0, str(current) + "-")
 
 
 def button_mult():
-    third_number = e.get()
-    global t_num
-    t_num = int(third_number)
-    e.delete(0, END)
+    current = e.get()
+    if current[-1] != '.':
+        if current[-1] != "+":
+            if current[-1] != "-":
+                if current[-1] != "*":
+                    if current[-1] != "/":
+                        e.delete(0, END)
+                        e.insert(0, str(current) + "*")
 
 
 def button_div():
-    fourth_number = e.get()
-    global fo_num
-    fo_num = int(fourth_number)
-    e.delete(0, END)
+    current = e.get()
+    if current[-1] != '.':
+        if current[-1] != "+":
+            if current[-1] != "-":
+                if current[-1] != "*":
+                    if current[-1] != "/":
+                        e.delete(0, END)
+                        e.insert(0, str(current) + "/")
 
 
 def button_equal():
-    fifth_number = e.get()
+    expression = e.get()
+    try:
+        result = eval(expression)
+        e.delete(0, END)
+        e.insert(0, str(result))
+    except:
+        e.delete(0, END)
+        e.insert(0, "Error")
+
+
+def button_backspace():
+    current_expression = e.get()
+    new_expression = current_expression[:-1]
     e.delete(0, END)
-    if button_add():
-        print("works")
+    e.insert(0, new_expression)
+
+
+def button_dot():
+    current_expression = e.get()
+    if current_expression[-1] != '.':
+        if current_expression[-1] != "+":
+            if current_expression[-1] != "-":
+                if current_expression[-1] != "*":
+                    if current_expression[-1] != "/":
+                        new_expression = current_expression + "."
+                        e.delete(0, END)
+                        e.insert(0, new_expression)
 
 
 button = Button(win, text=themes[theme_index], font=(
@@ -235,7 +276,8 @@ button.place(x=5, y=31)
 button1 = Button(win, text="", font=("ms ui gothic", 15), width=8, height=1)
 button1.place(x=103, y=31)
 
-button2 = Button(win, text="⇦", font=("ms ui gothic", 15), width=8, height=1)
+button2 = Button(win, text="⇦", font=("ms ui gothic", 15),
+                 width=8, height=1, command=button_backspace)
 button2.place(x=201, y=31)
 
 button3 = Button(win, text="C", font=("ms ui gothic", 15),
@@ -298,7 +340,8 @@ button17 = Button(win, text="0", font=("ms ui gothic", 15),
                   width=8, height=1, command=lambda: button_click(0))
 button17.place(x=103, y=171)
 
-button18 = Button(win, text="·", font=("ms ui gothic", 15), width=8, height=1)
+button18 = Button(win, text="·", font=("ms ui gothic", 15),
+                  width=8, height=1, command=button_dot)
 button18.place(x=201, y=171)
 
 button19 = Button(win, text="÷", font=("ms ui gothic", 15),
